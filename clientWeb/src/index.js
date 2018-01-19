@@ -6,9 +6,10 @@ import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import Routes from "./routes";
 import registerServiceWorker from "./registerServiceWorker";
+import "semantic-ui-css/semantic.min.css";  
 
 const client = new ApolloClient({
-  link: createHttpLink({ uri: "http://localhost:8081/graphql" }),
+  link: createHttpLink({ uri: "http://localhost:8085/graphql" }),
   cache: new InMemoryCache()
 });
 

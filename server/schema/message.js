@@ -2,11 +2,12 @@ export default `
 type Message {
     id: Int!
     text: String!
+    user: User!
     consumer: Consumer!
-    dispensary: Dispensary!
+    admin: Admin!
     
 }
 type Mutation {
-    createMessage(text: String!, senderId: Int!, receiverId: Int!): Boolean!
+    createMessage(id: Int!, text: String!): Boolean!
 }
 `;

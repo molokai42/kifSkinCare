@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize';
+import constants from '../config/constants';
 
-const sequelize = new Sequelize('budE', 'postgres', 'postgres', {
+const sequelize = new Sequelize(constants.DB_NAME, constants.DB_USER, constants.DB_PASS, {
   dialect: 'postgres',
   define: {
     underscored: true,
@@ -9,8 +10,9 @@ const sequelize = new Sequelize('budE', 'postgres', 'postgres', {
 
 const models = {
   Consumer: sequelize.import('./consumer'),
-  Dispensary: sequelize.import('./dispensary'),
+  Admin: sequelize.import('./admin'),
   Message: sequelize.import('./message'),
+  User: sequelize.import('./user.js'),
 };
 
 Object.keys(models).forEach((modelName) => {

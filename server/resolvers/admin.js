@@ -1,9 +1,31 @@
+import bcrypt from 'bcrypt';
+
+import formatErrors from './formatErrors';
+
 export default {
   Query: {
-    getDispensary: (parent, { id }, { models }) => models.Dispensary.findOne({ where: { id } }),
-    allDispensaries: (parent, args, { models }) => models.Dispensary.findAll(),
+    getAdmin: (parent, { id }, { models }) => models.Admin.findOne({ where: { id } }),
+    allAdmins: (parent, args, { models }) => models.Admin.findAll(),
   },
   Mutation: {
-    createDispensary: (parent, args, { models }) => models.Dispensary.create(args),
+    registerAdmin: async (parent, { password, ...otherArgs }, { models }) => {
+      try {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const admin = await models.Admin.create({
+          ...otherArgs,
+          password: hashedPassword,
+        });
+
+        return {
+          ok: true,
+          admin,
+        };
+      } catch (err) {
+        return {
+          ok: false,
+          errors: formatErrors(err, models),
+        };
+      }
+    },
   },
 };

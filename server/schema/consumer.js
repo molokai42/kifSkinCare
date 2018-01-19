@@ -1,4 +1,3 @@
-
 export default `
 
 type Consumer {
@@ -12,8 +11,13 @@ type Query {
   allConsumers: [Consumer!]!
 }
 
+type ConsumerRegisterResponse {
+  ok: Boolean!
+  consumer: Consumer
+  errors: [Error!]
+}
 type Mutation {
-  createConsumer(username: String!, email: String!, password: String!): Consumer!
+  registerConsumer(username: String!, email: String!, password: String!): ConsumerRegisterResponse!
 }
 
 `;

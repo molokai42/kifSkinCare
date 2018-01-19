@@ -5,16 +5,22 @@ export default (sequelize, DataTypes) => {
 
   Message.associate = (models) => {
     // 1:M
-    Message.belongsTo(models.Dispensary, {
+    Message.belongsTo(models.Admin, {
       foreignKey: {
-        name: 'dispensaryId',
-        field: 'dispensary_id',
+        name: 'adminId',
+        field: 'admin_id',
       },
     });
     Message.belongsTo(models.Consumer, {
       foreignKey: {
         name: 'consumerId',
         field: 'consumer_id',
+      },
+    });
+    Message.belongsTo(models.User, {
+      foreignKey: {
+        name: 'userId',
+        field: 'user_id',
       },
     });
   };

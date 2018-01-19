@@ -1,7 +1,6 @@
-
 export default `
 
-type Dispensary {
+type Admin {
   id: Int!
   displayname: String!
   email: String!
@@ -9,12 +8,17 @@ type Dispensary {
 }
 
 type Query {
-  getDispensary(id: Int!): Dispensary!
-  allDispensaries: [Dispensary!]!
+  getAdmin(id: Int!): Admin!
+  allAdmins: [Admin!]!
+}
+type AdminRegisterResponse {
+  ok: Boolean!
+  admin: Admin
+  errors: [Error!]
 }
 
 type Mutation {
-  createDispensary(displayname: String!, email: String!, password: String!): Dispensary!
+  registerAdmin(displayname: String!, email: String!, password: String!): AdminRegisterResponse!
 }
 
 `;
